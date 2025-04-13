@@ -15,18 +15,12 @@
 /*.egg-info/
 
 /# Project specific ML directories
-/ML/Grivances/results/
-/ML/Grivances/cache/
-/ML/Grivances/checkpoints/
-/ML/Grivances/grievance_model/
-/ML/Grivances/GrivienceProofs/
-/ML/Grivances/impact_models/
-/ML/Grivances/model_output/
-/ML/Grivances/saved_model/
-/ML/Grivances/unified_model/
-/ML/GrievanceProofs/Images/
-/ML/GrievanceProofs/results/
-/ML/GrievanceProofs/saved_models/
+/ML/GrivancesAnalysis/grievance_model/
+/ML/GrivancesAnalysis/logs/
+/ML/GrivancesAnalysis/results/
+
+
+
 
 # IDEs and editors
 /.idea/

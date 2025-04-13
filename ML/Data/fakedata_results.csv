@@ -1,6 +1,0 @@
-id,original_text,status,reason,confidence,data_source
-1,Large potholes making it dangerous for vehicles.,accepted,Authentic grievance,0.8537997603416443,Additional Fake Data
-2,"Garbage has not been collected for a week, causing health hazards.",accepted,Authentic grievance,0.5639358758926392,Additional Fake Data
-3,"Continuous water leakage from the pipeline, leading to wastage.",accepted,Authentic grievance,0.6984986066818237,Additional Fake Data
-4,"Frequent power cuts at night, affecting daily life.",accepted,Authentic grievance,0.8531857132911682,Additional Fake Data
-5,"Buses are overcrowded during peak hours, no proper frequency.",accepted,Authentic grievance,0.691947340965271,Additional Fake Data
