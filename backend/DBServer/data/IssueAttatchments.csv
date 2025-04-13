@@ -1,6 +1,0 @@
-mediaId,issueId,uploadedBy,mediaUrl,timestampTaken,isVerified,uploadedAt
-MEDIA001,ISSUE001,USER123,http://example.com/media1.jpg,2025-01-10T08:30:00Z,true,2025-01-10T09:00:00Z
-MEDIA002,ISSUE002,USER456,http://example.com/media2.jpg,2025-01-12T08:00:00Z,false,2025-01-12T08:30:00Z
-MEDIA003,ISSUE003,USER789,http://example.com/media3.jpg,2025-01-14T10:45:00Z,true,2025-01-14T11:15:00Z
-MEDIA004,ISSUE004,USER321,http://example.com/media4.jpg,2025-01-16T09:30:00Z,false,2025-01-16T10:00:00Z
-MEDIA005,ISSUE005,USER654,http://example.com/media5.jpg,2025-01-18T08:00:00Z,true,2025-01-18T08:30:00Z
