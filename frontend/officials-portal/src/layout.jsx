@@ -114,15 +114,7 @@ function Layout({ userRole, onLogout }) {
       {/* Main content */}
       <div className="flex-1 overflow-auto relative">
         <div className="p-8">
-          {/* Profile button with higher z-index */}
-          <div className="absolute top-4 right-4 z-40">
-            <button
-              onClick={() => setShowProfile(!showProfile)}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
-            >
-              <UserCircle className="w-6 h-6 text-white/70" />
-            </button>
-          </div>
+          
 
           {/* Profile Card Modal */}
           {showProfile && (

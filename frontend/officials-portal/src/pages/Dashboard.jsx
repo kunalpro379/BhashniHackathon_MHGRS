@@ -91,7 +91,6 @@ const Dashboard = ({ userAuth }) => {
           </div>
           
           <div className="flex items-center gap-4">
-            <ThemeToggle />
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -107,7 +106,6 @@ const Dashboard = ({ userAuth }) => {
             <motion.div
               whileHover={{ scale: 1.1 }}
               className="flex items-center gap-2 cursor-pointer"
-              onClick={() => setShowProfile(!showProfile)}
             >
               <UserCircle className="h-6 w-6 text-gray-600 dark:text-gray-300" />
               <span className="text-white text-sm font-medium dark:text-gray-200">
@@ -216,7 +214,7 @@ const Dashboard = ({ userAuth }) => {
             transition={{ duration: 0.5 }}
             className="text-center mb-8"
           >
-            <h2 className="text-2xl font-bold text-white mb-2">Platform Features</h2>
+            <h2 className="text-2xl font-bold text-black mb-2">Platform Features</h2>
             <p className="text-gray-400">Explore the tools and features available to you</p>
           </motion.div>
 

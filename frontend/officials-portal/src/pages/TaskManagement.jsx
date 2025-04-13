@@ -68,17 +68,17 @@ const TaskManagement = () => {
         );
       case 'dashboard':
         return <Dashboard />;
-      case 'tasks':
-        return <Tasks />;
-      case 'calendar':
-        return (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-          >
-            <TaskCalendar />
-          </motion.div>
-        );
+      // case 'tasks':
+      //   return <Tasks />;
+      // case 'calendar':
+      //   return (
+      //     <motion.div
+      //       initial={{ opacity: 0, x: 20 }}
+      //       animate={{ opacity: 1, x: 0 }}
+      //     >
+      //       <TaskCalendar />
+      //     </motion.div>
+      //   );
       case 'resources':
         return (
           <motion.div
