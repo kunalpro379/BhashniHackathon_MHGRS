@@ -26,17 +26,17 @@ const Dashboard = ({ userAuth }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1
-    }
+      opacity: 1,
+    },
   };
 
   const handleShowAnalysis = () => navigate('/analysis');
@@ -45,25 +45,25 @@ const Dashboard = ({ userAuth }) => {
 
   const features = [
     {
-      title: "Real-time Monitoring",
-      description: "Track grievances and their resolution status in real-time",
+      title: 'Real-time Monitoring',
+      description: 'Track grievances and their resolution status in real-time',
       icon: <Clock className="w-6 h-6" />,
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      path: "/grievances"
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      path: '/grievances',
     },
     {
-      title: "Analytics Dashboard",
-      description: "Comprehensive analytics to make informed decisions",
+      title: 'Analytics Dashboard',
+      description: 'Comprehensive analytics to make informed decisions',
       icon: <BarChart2 className="w-6 h-6" />,
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      path: "/heatmap"
+      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      path: '/heatmap',
     },
     {
-      title: "Department Coordination",
-      description: "Seamless coordination between different departments",
+      title: 'Department Coordination',
+      description: 'Seamless coordination between different departments',
       icon: <Users2 className="w-6 h-6" />,
-      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      path: "/chat"
+      image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+      path: '/chat',
     },
   ];
 
@@ -73,7 +73,6 @@ const Dashboard = ({ userAuth }) => {
 
   return (
     <div className="min-h-screen duration-300">
-
       {/* Content Container */}
       <div className="relative z-10">
         {/* Header */}
@@ -92,7 +91,7 @@ const Dashboard = ({ userAuth }) => {
           </div>
           
           <div className="flex items-center gap-4">
-            {/* <ThemeToggle /> */}
+            <ThemeToggle />
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -112,7 +111,7 @@ const Dashboard = ({ userAuth }) => {
             >
               <UserCircle className="h-6 w-6 text-gray-600 dark:text-gray-300" />
               <span className="text-white text-sm font-medium dark:text-gray-200">
-                {userAuth?.username || 'Admin'}
+                {userAuth?.name || 'Admin'}
               </span>
             </motion.div>
           </div>
@@ -142,20 +141,20 @@ const Dashboard = ({ userAuth }) => {
                 <div className="relative z-10 flex items-center justify-between">
                   <div className='flex items-center gap-4 justify-center flex-col md:flex-row'>
                     <h1 className="text-3xl font-bold text-white mb-2">
-                      Welcome back, {userAuth?.username || 'Admin'}
+                      Welcome back, {userAuth?.name || 'Admin'}
                     </h1>
                     <p className="text-white/80">
                       Here's what's happening in your jurisdiction today
                     </p>
-                  <motion.button 
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setShowProfile(!showProfile)}
-                    className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors flex items-center gap-2"
-                  >
-                    <UserCircle size={20} />
-                    View Profile
-                  </motion.button>
+                    <motion.button 
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setShowProfile(!showProfile)}
+                      className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors flex items-center gap-2"
+                    >
+                      <UserCircle size={20} />
+                      View Profile
+                    </motion.button>
                   </div>
                 </div>
               </div>
@@ -165,7 +164,7 @@ const Dashboard = ({ userAuth }) => {
                 {[
                   { label: 'New Grievances', value: '12', trend: '+2 today', color: 'text-purple-400' },
                   { label: 'Pending Actions', value: '5', trend: '3 urgent', color: 'text-amber-400' },
-                  { label: 'Resolved Today', value: '8', trend: '94% success', color: 'text-emerald-400' }
+                  { label: 'Resolved Today', value: '8', trend: '94% success', color: 'text-emerald-400' },
                 ].map((stat, index) => (
                   <div 
                     key={index}
@@ -215,10 +214,10 @@ const Dashboard = ({ userAuth }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-black text-center mb-8"
+            className="text-center mb-8"
           >
-            <h2 className="text-black text-2xl font-bold mb-2">Platform Features</h2>
-            <p className="text-gray-800 text-gray-400">Explore the tools and features available to you</p>
+            <h2 className="text-2xl font-bold text-white mb-2">Platform Features</h2>
+            <p className="text-gray-400">Explore the tools and features available to you</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -241,9 +240,7 @@ const Dashboard = ({ userAuth }) => {
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 bg-[#3d3d3d] rounded-lg text-white">
-                      {feature.icon}
-                    </div>
+                    <div className="p-2 bg-[#3d3d3d] rounded-lg text-white">{feature.icon}</div>
                     <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
                   </div>
                   <p className="text-gray-400 mb-4">{feature.description}</p>

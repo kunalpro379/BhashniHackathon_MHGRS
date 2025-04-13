@@ -36,11 +36,11 @@ const Statistics: React.FC<StatisticsProps> = ({ language, theme }) => {
 
   return (
     <div className="grid md:grid-cols-2 gap-8 mb-12">
-      <div className={`bg-white ${theme === 'dark' ? 'text-gray-900' : 'text-gray-800'} p-6 rounded-lg shadow-md`}>
+      <div className={`bg-white text-black p-6 rounded-lg shadow-md`}>
         <h3 className="text-lg font-semibold mb-4">{t.totalGrievances}</h3>
         <Bar data={barData} />
       </div>
-      <div className={`bg-white ${theme === 'dark' ? 'text-gray-900' : 'text-gray-800'} p-6 rounded-lg shadow-md`}>
+      <div className={`bg-white text-black p-6 rounded-lg shadow-md`}>
         <h3 className="text-lg font-semibold mb-4">{t.resolvedGrievances}</h3>
         <Pie data={pieData} />
       </div>

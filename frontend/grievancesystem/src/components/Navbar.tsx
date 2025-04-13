@@ -62,10 +62,10 @@ const Navbar: React.FC<NavbarProps> = ({ language, setLanguage, theme, setTheme 
             <Shield className="w-8 h-8 md:w-10 md:h-10 text-purple-600" />
             <div className="hidden sm:block">
               <h1 className="text-lg md:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
-                {t.title}
+                {"JanMitra-AI"}
               </h1>
               <p className="text-[10px] md:text-xs text-gray-600 dark:text-gray-400">
-                Public Grievance Portal
+                Public Grievance and Accountment Portal
               </p>
             </div>
           </div>

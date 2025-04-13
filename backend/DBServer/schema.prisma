@@ -8,27 +8,17 @@ datasource db {
 }
 
 enum RoleType {
-  // Top Level
   DISTRICT_MAGISTRATE
   COMMISSIONER
   ADMINISTRATOR
-  
-  // Mid Level
   DEPARTMENT_HEAD
   BLOCK_OFFICER
   NAGAR_SEVAK
-  
-  // Operational Level
   DEPARTMENT_OFFICER
   PANCHAYAT_OFFICER
   GRAM_PANCHAYAT
-
   FIELD_WORKER
-  
-  // Others
-  CITIZEN
   ADMIN
-
 }
 
 enum AuthorityLevel {
@@ -41,70 +31,56 @@ model Authority {
   id               String         @id @default(cuid())
   name             String
   email            String         @unique
+  password         String         // Hashed password
   role             RoleType
   level            AuthorityLevel
   assignedRegion   String?
-  jurisdiction     String?        // Geographic area of responsibility
-  designation      String?        // Official designation/title
-  //department       Department?    @relation("DepartmentAssignment", fields: [departmentId], references: [id])
+  jurisdiction     String?
+  designation      String?
   departmentId     String?
-  
-  // Hierarchy
-  parentAuthority  Authority?     @relation("AuthorityHierarchy", fields: [parentId], references: [id])
   parentId         String?
-  subordinates     Authority[]    @relation("AuthorityHierarchy")
-  
-  // Common fields
   contactNumber    String?
   officeAddress    String?
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
   isActive         Boolean        @default(true)
-  
+  lastLogin        DateTime?      // Track last login
   // Relations
-  departments Department[] @relation("AuthorityDepartment")
+  parentAuthority  Authority?     @relation("AuthorityHierarchy", fields: [parentId], references: [id])
+  subordinates     Authority[]    @relation("AuthorityHierarchy")
+  departments      Department[]   @relation("AuthorityDepartment")
   announcements    Announcement[]
   receivedCommunications Communication[] @relation("CommunicationAuthority")
-  // Optional role-specific relations
-  blockJurisdiction     String?   // For BLOCK_OFFICER
-  panchayatArea         String?   // For PANCHAYAT_OFFICER
-  wardNumber            String?   // For NAGAR_SEVAK
-  specialization        String?   // For DEPARTMENT_OFFICER
-  fieldArea            String?   // For FIELD_WORKER
-
-  // Add Panchayat-specific fields
-  panchayatDetails     Json?        // For storing Panchayat-specific data
-  gramSabhaArea        String?      // For Panchayat jurisdiction
-  villageCount         Int?         // Number of villages under Panchayat
-  panchayatWorkers     Json?        // Store workers data
-  panchayatOfficers    Json?        // Store officers data
-
-  // Add missing opposite relations
-  //managedDepartment Department?  @relation("DepartmentHead")
-  //departmentsManaged Department[] @relation("AuthorityDepartmentManager")
+  blockJurisdiction String?
+  panchayatArea     String?
+  wardNumber        String?
+  specialization    String?
+  fieldArea         String?
+  panchayatDetails  Json?
+  gramSabhaArea     String?
+  villageCount      Int?
+  panchayatWorkers  Json?
+  panchayatOfficers Json?
 }
 
 model Department {
-  id                 String   @id @default(cuid())  // This will be the only ID field
-  departmentName     String   
+  id                 String       @id @default(cuid())
+  departmentName     String
   description        String?
-//  departmentOfficers DepartmentOfficer[]
-  issues             Issue[]
-  timestamp          DateTime @default(now())
-  announcements      Announcement[] 
-  feedbacks          Feedback[]        @relation("DepartmentFeedbacks")
+  timestamp          DateTime     @default(now())
+  authorityId        String
+  authority          Authority    @relation("AuthorityDepartment", fields: [authorityId], references: [id])
+  grievances         Grievance[]
+  announcements      Announcement[]
+  feedbacks          Feedback[]   @relation("DepartmentFeedbacks")
   communications     Communication[] @relation("CommunicationDepartment")
   workers            Worker[]
   resourceId         String?
-  authorityId        String
-  authority          Authority @relation("AuthorityDepartment", fields: [authorityId], references: [id])
-  grievances         Grievance[] 
-  hierarchyLevel     String     // To indicate department's position in hierarchy
-  //parentDepartment   Department? @relation("DepartmentHierarchy", fields: [parentDeptId], references: [id])
- // parentDeptId       String?
-  //childDepartments   Department[] @relation("DepartmentHierarchy")
-  headAuthorityId    String?     @unique
+  hierarchyLevel     String
+  headAuthorityId    String?      @unique
 }
+
+// Other models (Communication, Announcement, etc.) remain unchanged
 
 model Communication {
   id                  String             @id @default(cuid())

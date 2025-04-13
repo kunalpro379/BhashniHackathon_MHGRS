@@ -57,7 +57,7 @@ const GrievanceList: React.FC<GrievanceListProps> = ({ language }) => {
   };
 
   const renderGrievanceCard = (grievance: any) => (
-    <div className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200">
+    <div className="bg-white text-black rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200">
       <div className="p-5">
         <div className="flex justify-between items-start mb-4">
           <div>
@@ -95,7 +95,7 @@ const GrievanceList: React.FC<GrievanceListProps> = ({ language }) => {
             {grievance.tags.map((tag: string) => (
               <span
                 key={tag}
-                className="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium"
+                className="px-2 py-1 bg-gray-100 text-black rounded-full text-xs font-medium"
               >
                 {tag}
               </span>
@@ -127,7 +127,7 @@ const GrievanceList: React.FC<GrievanceListProps> = ({ language }) => {
   return (
     <div className="space-y-6">
       {/* Enhanced Filter Bar */}
-      <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200">
+      <div className="bg-white text-black p-4 rounded-lg shadow-md border border-gray-200">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">

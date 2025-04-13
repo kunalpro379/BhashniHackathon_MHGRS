@@ -134,9 +134,9 @@ const Dashboard: React.FC<DashboardProps> = ({ language, theme, setShowForm }) =
                   />
                 </div>
                 <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 text-white mt-4 sm:mt-6">
-                  UP-IGRS
+                  JanMitra-AI
                   <span className="block text-lg sm:text-2xl md:text-3xl mt-1 sm:mt-2 text-[#FFA41B]">
-                    Integrated Grievance Redressal System
+                    A Stop Solution To Your Problems
                   </span>
                 </h1>
               </motion.div>

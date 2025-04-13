@@ -7,7 +7,6 @@ import Statistics from './components/Statistics';
 import Announcements from './components/Announcements';
 import CommunityPolls from './components/CommunityPolls';
 import DiscussionForum from './components/DiscussionForum';
-import GrievanceForm from './components/GrievanceForm';
 import GrievanceList from './components/GrievanceList';
 // import { MobileIcon } from 'lucide-react'; // Add this import
 
@@ -27,7 +26,7 @@ function App() {
           <div className="bg-gradient-to-r from-[#1a4a7c] to-[#134074] p-3 rounded-full shadow-lg">
             <img 
               src="/app-icon.png" 
-              alt="IGRS UP"
+              alt="MH-IGRS"
               className="w-10 h-10"
             />
           </div>
@@ -48,7 +47,7 @@ function App() {
           <div className="container mx-auto px-4">
             <div className="text-center">
               <p className="mb-2">{t.footerText}</p>
-              <p className="text-gray-400">{t.copyright}</p>
+              <p className="text-gray-400">© 2025 Janmitra-AI</p>
             </div>
           </div>
         </footer>
