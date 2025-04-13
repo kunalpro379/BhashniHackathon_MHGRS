@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react';
-import { supabase } from '../utils/supabase';
+import { useState } from 'react';
 import Maharashtralogo from '../assets/mahadbtlogo.jpeg';
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [role, setRole] = useState('');
   const [department, setDepartment] = useState('');
+  const [error, setError] = useState('');
 
   const roles = [
     { value: 'district_magistrate', label: 'District Magistrate' },
@@ -28,49 +27,25 @@ function Login({ onLogin }) {
     'Rural Development',
   ];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError('');
 
-    try {
-      // Sign in with Supabase
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (authError) throw authError;
-
-      // Fetch user data from Authority table using the authenticated email
-      const { data: userData, error: fetchError } = await supabase
-        .from('Authority')
-        .select('*')
-        .eq('email', email)
-        .single();
-
-      if (fetchError || !userData) throw fetchError || new Error('User not found in Authority table');
-
-      // Map Supabase role to frontend role (adjust based on your schema)
-      const mappedRole = userData.role.toLowerCase().replace(/_/g, '_'); // Adjust mapping as needed
-      const loginDetails = {
-        id: userData.id,
-        email: userData.email,
-        role: mappedRole,
-        department: userData.departmentId ? departments.find((d) => d.toLowerCase() === userData.departmentId.toLowerCase()) : null,
-        jurisdiction: userData.jurisdiction || 'Default Jurisdiction',
-        name: userData.name,
-      };
-
-      // Print login details to console
-      console.log('Login Details:', loginDetails);
-
-      // Pass login details to App.jsx
-      onLogin(mappedRole, loginDetails);
-
-      // Redirect to dashboard (handled by App.jsx)
-    } catch (err) {
-      setError(err.message || 'Login failed');
+    if (!email || !password || !role || (['department_head', 'department_officer'].includes(role) && !department)) {
+      setError('Please fill all required fields.');
+      return;
     }
+
+    const loginDetails = {
+      id: Math.floor(Math.random() * 1000),
+      email,
+      name: email.split('@')[0],
+      role,
+      department,
+      jurisdiction: 'Default Jurisdiction',
+    };
+
+    console.log('Logged In:', loginDetails);
+    onLogin(role, loginDetails);
   };
 
   return (
@@ -95,7 +70,7 @@ function Login({ onLogin }) {
             <div>
               <label className="block text-gray-700 font-medium mb-2">आपकी भूमिका (Your Role)</label>
               <select
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF9933] focus:border-transparent transition duration-150"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
                 required
@@ -113,7 +88,7 @@ function Login({ onLogin }) {
               <div>
                 <label className="block text-gray-700 font-medium mb-2">विभाग (Department)</label>
                 <select
-                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF9933] focus:border-transparent transition duration-150"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md"
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
                   required
@@ -133,7 +108,7 @@ function Login({ onLogin }) {
               <input
                 type="text"
                 placeholder="Enter your username"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF9933] focus:border-transparent transition duration-150"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -145,7 +120,7 @@ function Login({ onLogin }) {
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF9933] focus:border-transparent transition duration-150"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -156,7 +131,6 @@ function Login({ onLogin }) {
           <div>
             <button
               type="submit"
-              onClick={()=>handleSubmit()}
               className="w-full py-3 bg-gradient-to-r from-[#FF9933] via-[#000080] to-[#138808] text-white rounded-md hover:opacity-90 transition duration-150 font-medium text-lg shadow-md"
             >
               प्रवेश करें (Login)
